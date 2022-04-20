@@ -227,6 +227,9 @@ struct TORCH_API OptionalType : public UnionType {
 
   // common cast Optional[Tensor] for undefined tensor type
   static TypePtr ofTensor();
+  //
+  // global singleton
+  static TypePtr get(TypePtr inner);
 
  private:
   explicit OptionalType(TypePtr contained);
@@ -1866,14 +1869,21 @@ struct getTypePtr_<c10::Dict<K, V>> final {
     return type;
   }
 };
+
 template <class T>
 struct getTypePtr_<at::optional<T>> final {
+  static const auto callSingleton() {
+    static auto inner_type = getTypePtr_<T>::call();
+    // The "per optional<T>" static singleton needs to live in a .cpp file,
+    // otherwise we'll end up with one singleton instance per shared library.
+    return OptionalType::get(inner_type);
+  }
   static const auto& call() {
-    static auto type = TypeFactory::create<OptionalType>(
-        getTypePtr_<T>::call());
+    static auto type = getTypePtr_<at::optional<T>>::callSingleton();
     return type;
   }
 };
+
 
 template<>
 struct getTypePtr_<at::OptionalIntArrayRef> final {
