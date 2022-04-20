@@ -842,11 +842,7 @@ class NativeFunctionsGroup:
         if out is None:
             return None
 
-        return NativeFunctionsGroup(
-            functional=functional,
-            inplace=inplace,
-            out=out,
-        )
+        return NativeFunctionsGroup(functional=functional, inplace=inplace, out=out,)
 
 
 def is_foreach_op(name: str) -> bool:
@@ -1200,11 +1196,7 @@ class FunctionSchema:
         """
 
         def strip_ret_annotation(r: Return) -> Return:
-            return Return(
-                name=None,
-                type=r.type,
-                annotation=None,
-            )
+            return Return(name=None, type=r.type, annotation=None,)
 
         base_name = self.name.name.base
         if strip_view_copy_name and base_name.endswith("_copy"):
@@ -1474,12 +1466,7 @@ class Argument:
             type_s = type_and_annot
             annotation = None
         type = Type.parse(type_s)
-        r = Argument(
-            name=name,
-            type=type,
-            default=default,
-            annotation=annotation,
-        )
+        r = Argument(name=name, type=type, default=default, annotation=annotation,)
         assert str(r) == arg, f"{str(r)} != {arg}"
         return r
 
@@ -1530,11 +1517,7 @@ class Return:
             type_s = type_and_annot
             annotation = None
         type = Type.parse(type_s)
-        r = Return(
-            name=name,
-            type=type,
-            annotation=annotation,
-        )
+        r = Return(name=name, type=type, annotation=annotation,)
         assert str(r) == arg, f"{str(r)} != {arg}"
         return r
 

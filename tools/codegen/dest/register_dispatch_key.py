@@ -40,9 +40,7 @@ from tools.codegen.selective_build.selector import SelectiveBuilder
 
 
 def gen_registration_headers(
-    backend_index: BackendIndex,
-    per_operator_headers: bool,
-    rocm: bool,
+    backend_index: BackendIndex, per_operator_headers: bool, rocm: bool,
 ) -> List[str]:
     if per_operator_headers:
         headers = ["#include <ATen/ops/as_strided_native.h>"]

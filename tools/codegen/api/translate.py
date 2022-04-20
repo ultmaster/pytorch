@@ -96,12 +96,7 @@ def translate(
     binding_exprs: List[Expr] = []
     for b in bindings:
         if isinstance(b, Binding):
-            binding_exprs.append(
-                Expr(
-                    expr=b.name,
-                    type=b.nctype,
-                )
-            )
+            binding_exprs.append(Expr(expr=b.name, type=b.nctype,))
         else:
             binding_exprs.append(b)
 
