@@ -267,6 +267,8 @@ def gen_nn_functional(fm: FileManager) -> None:
         "rrelu_",
         "pixel_shuffle",
         "pixel_unshuffle",
+        "_native_pixel_shuffle",
+        "_native_pixel_unshuffle",
         "channel_shuffle",
         "native_channel_shuffle",
         "pdist",

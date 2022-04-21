@@ -329,6 +329,10 @@ GRADIENT_IMPLEMENTED_FOR_COMPLEX = {
     "im2col",
     "im2col_backward",
     "cholesky_inverse",
+    "_native_pixel_shuffle",
+    "_native_pixel_unshuffle",
+    "_native_pixel_shuffle_backward",
+    "_native_pixel_unshuffle_backward",
 }
 
 GRADIENT_IMPLEMENTED_FOR_SPARSE_COMPLEX = {
